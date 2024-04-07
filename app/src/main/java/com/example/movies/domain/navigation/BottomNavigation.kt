@@ -1,5 +1,6 @@
 package com.example.movies.domain.navigation
 
+import androidx.annotation.StringRes
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -7,8 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.movies.R
@@ -36,7 +39,9 @@ fun BottomNavBar(navController: NavController) {
                         )
                     )
                 },
-                label = { Text(text = navItem.title, fontSize = 9.sp) }
+                label = {
+                    Text(text = LocalContext.current.getString(navItem.title), fontSize = 9.sp)
+                }
             )
         }
     }

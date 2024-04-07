@@ -3,4 +3,8 @@
     <string name="app_name">Фильмы</string>
     <string name="search_placeholder">Поиск</string>
     <string name="cont_desc_navigation_item">навигационный значок</string>
+    <string name="bottom_nav_item_home">Главная</string>
+    <string name="bottom_nav_item_favorites">Избранное</string>
+    <string name="bottom_nav_item_watch_later">Смотреть позже</string>
+    <string name="bottom_nav_item_settings">Настройки</string>
 </resources>

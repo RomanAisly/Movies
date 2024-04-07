@@ -50,7 +50,7 @@ fun Search() {
     }
     SearchBar(modifier = Modifier
         .fillMaxWidth()
-        .padding(start = 10.dp, end = 10.dp),
+        .padding(start = 8.dp, end = 8.dp),
         placeholder = { Text(text = stringResource(R.string.search_placeholder)) },
         query = searchText,
         onQueryChange = { searchText = it },
