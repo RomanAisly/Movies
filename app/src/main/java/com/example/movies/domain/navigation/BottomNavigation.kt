@@ -1,5 +1,6 @@
 package com.example.movies.domain.navigation
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -28,7 +29,7 @@ fun BottomNavBar(navController: NavController) {
         BottomItems.SettingsBottomNav
     )
 
-    BottomAppBar(containerColor = colorForSearchBarBackground) {
+    BottomAppBar(modifier = Modifier.fillMaxWidth()) {
         val backStack by navController.currentBackStackEntryAsState()
         val currentRoute = backStack?.destination?.route
         navList.forEach { navItem ->

@@ -66,7 +66,6 @@ fun Search() {
         placeholder = { Text(text = stringResource(R.string.search_placeholder)) },
         query = searchText,
         onQueryChange = { searchText = it },
-        colors = SearchBarDefaults.colors(containerColor = colorForSearchBarBackground),
         onSearch = { isActive = false },
         active = isActive,
         onActiveChange = { isActive = it }
@@ -78,7 +77,8 @@ fun MoviesList() {
     val listfilms = listOf("film1, film2, film3, film4, film5")
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(count = 5) {
             Text(text = "$listfilms")
