@@ -71,4 +71,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     //Icons Extended
     implementation("androidx.compose.material:material-icons-extended:1.6.5")
+    //ConstraintLayout
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 }

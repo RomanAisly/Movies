@@ -15,17 +15,9 @@ fun NavGraph(navHostController: NavHostController) {
         navController = navHostController,
         startDestination = BottomItems.HOME,
     ) {
-        composable(BottomItems.HOME) {
-
-        }
-        composable(BottomItems.FAVORITE) {
-            FavoriteScreen()
-        }
-        composable(BottomItems.WATCH_LATER) {
-            WatchLaterScreen()
-        }
-        composable(BottomItems.SETTINGS) {
-            SettingsScreen()
-        }
+        composable(BottomItems.HOME) {}
+        composable(BottomItems.FAVORITE) {FavoriteScreen()}
+        composable(BottomItems.WATCH_LATER) {WatchLaterScreen()}
+        composable(BottomItems.SETTINGS) {SettingsScreen()}
     }
 }

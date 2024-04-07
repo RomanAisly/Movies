@@ -1,18 +1,20 @@
 package com.example.movies.domain.navigation
 
-import androidx.annotation.StringRes
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import androidx.navigation.NavHost
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.movies.R
 import com.example.movies.ui.theme.colorForSearchBarBackground
@@ -25,6 +27,7 @@ fun BottomNavBar(navController: NavController) {
         BottomItems.WatchLaterBottomNav,
         BottomItems.SettingsBottomNav
     )
+
     BottomAppBar(containerColor = colorForSearchBarBackground) {
         val backStack by navController.currentBackStackEntryAsState()
         val currentRoute = backStack?.destination?.route

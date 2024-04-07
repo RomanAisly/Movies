@@ -16,6 +16,4 @@ sealed class BottomItems(@StringRes val title: Int, val iconId: Int, val route: 
         const val WATCH_LATER = "watch_later_screen"
         const val SETTINGS = "settings_screen"
     }
-
-
 }
