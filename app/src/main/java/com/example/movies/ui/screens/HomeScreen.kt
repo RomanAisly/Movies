@@ -2,6 +2,7 @@ package com.example.movies.ui.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,21 +34,10 @@ import com.example.movies.domain.navigation.BottomNavBar
 import com.example.movies.domain.navigation.NavGraph
 import com.example.movies.ui.theme.colorForSearchBarBackground
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen() {
-    val navController = rememberNavController()
-    Scaffold(
-        bottomBar = {
-            BottomNavBar(
-                navController = navController
-            )
-            NavGraph(navHostController = navController)
-        },
-        topBar = {
-            Search()
-        }) {
-        MoviesList()
+    Box(modifier = Modifier.fillMaxSize()) {
+        NavGraph()
     }
 }
 
@@ -80,7 +70,7 @@ fun MoviesList() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(count = 5) {
+        items(count = 8) {
             Text(text = "$listfilms")
         }
     }
