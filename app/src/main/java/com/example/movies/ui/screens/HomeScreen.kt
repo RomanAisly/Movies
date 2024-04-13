@@ -17,7 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -49,6 +48,7 @@ fun Search() {
 @Composable
 fun HomeScreenContent() {
 
+
     val lazyGridState = rememberLazyGridState()
 
     LazyVerticalGrid(
@@ -64,9 +64,9 @@ fun HomeScreenContent() {
         items(8) {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
-                model = "https://memepedia.ru/wp-content/uploads/2018/12/in_article_11341c19c0-768x768.jpg.",
-                contentDescription = "",
-                contentScale = ContentScale.Crop)
+                model = "",
+                contentDescription = ""
+            )
         }
     }
 }
