@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.movies.R
+import com.example.movies.data.remote.MovieApi
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,7 +65,7 @@ fun HomeScreenContent() {
         items(8) {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
-                model = "",
+                model = MovieApi.IMAGE_URL,
                 contentDescription = ""
             )
         }
