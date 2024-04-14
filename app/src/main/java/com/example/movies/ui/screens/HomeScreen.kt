@@ -32,8 +32,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.movies.R
+import com.example.movies.domain.network.ApiConstants
 import com.example.movies.ui.theme.gradForBack
-import com.example.movies.utils.ApiConstants
 
 
 @OptIn(ExperimentalMaterial3Api::class)

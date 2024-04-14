@@ -1,4 +1,4 @@
-package com.example.movies.utils
+package com.example.movies.domain.network
 
 object ApiConstants {
     const val BASE_URL = "https://api.themoviedb.org/"
