@@ -1,20 +1,23 @@
 package com.example.movies.data.remote
 
-import retrofit2.Call
+import com.example.movies.utils.ApiConstants
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieApi {
 
     @GET("3/movie/popular")
-    fun getMovies(
-        @Query("api_key") apiKey: String = API_KEY,
-        @Query("page") page: Int,
-    ): Call<MovieListDTO>
+    suspend fun getFilmsData(
+        @Query("api_key") apiKey: String = ApiConstants.API_KEY,
 
-    companion object {
-        const val BASE_URL = "https://api.themoviedb.org/"
-        const val IMAGE_URL = "https://image.tmdb.org/t/p/w500"
-        const val API_KEY = "fe4a220f82927723e66d22c09c2555ba"
-    }
+        @Query("page") page: Int,
+    ): MovieListDTO
+
+    @GET("3/search/movie")
+    suspend fun getFilmsFromSearch(
+        @Query("api_key") apiKey: String = ApiConstants.API_KEY,
+
+        @Query("page") page: Int,
+    ): MovieListDTO
+
 }

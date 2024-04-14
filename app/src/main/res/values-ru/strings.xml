@@ -2,10 +2,12 @@
 <resources>
     <string name="app_name">Фильмы</string>
     <string name="search_placeholder">Поиск</string>
-    <string name="cont_desc_navigation_item">навигационный значок</string>
+    <string name="cont_desc_navigation_item">иконка навигации</string>
     <string name="bottom_nav_item_home">Главная</string>
     <string name="bottom_nav_item_favorites">Избранное</string>
     <string name="bottom_nav_item_watch_later">Смотреть позже</string>
     <string name="bottom_nav_item_settings">Настройки</string>
     <string name="cont_desc_movie_post">постер фильма</string>
+    <string name="cont_desc_search_icon">иконка поиска</string>
+    <string name="cont_desc_close_icon">иконка закрытия поиска</string>
 </resources>

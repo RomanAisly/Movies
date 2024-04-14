@@ -1,6 +1,7 @@
 package com.example.movies.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,8 +31,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.movies.R
-import com.example.movies.data.remote.MovieApi
 import com.example.movies.ui.theme.gradForBack
+import com.example.movies.utils.ApiConstants
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +54,31 @@ fun Search() {
         onQueryChange = { searchText = it },
         onSearch = { isActive = false },
         active = isActive,
-        onActiveChange = { isActive = it }
+        onActiveChange = { isActive = it },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search, contentDescription = stringResource(
+                    R.string.cont_desc_search_icon
+                )
+            )
+        },
+        trailingIcon = {
+            if (isActive) {
+                Icon(
+                    modifier = Modifier.clickable {
+                        if (searchText.isNotEmpty()) {
+                            searchText = ""
+                        } else {
+                            isActive = false
+                        }
+                    },
+                    imageVector = Icons.Default.Close, contentDescription = stringResource(
+                        R.string.cont_desc_close_icon
+                    )
+                )
+            }
+
+        }
     ) {}
 }
 
@@ -72,7 +101,8 @@ fun HomeScreenContent() {
         items(8) {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(LocalContext.current).data(MovieApi.IMAGE_URL)
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(ApiConstants.IMAGE_URL + "w342")
                     .crossfade(true)
                     .build(),
                 contentDescription = stringResource(R.string.cont_desc_movie_post),

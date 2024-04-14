@@ -22,13 +22,13 @@ fun NavGraph() {
         topBar = { Search() }) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = BottomItems.HOME,
+            startDestination = BottomItems.HomeBottomNav.route,
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable(route = BottomItems.HOME) { HomeScreenContent() }
-            composable(route = BottomItems.FAVORITE) { FavoriteScreen() }
-            composable(route = BottomItems.WATCH_LATER) { WatchLaterScreen() }
-            composable(route = BottomItems.SETTINGS) { SettingsScreen() }
+            composable(route = BottomItems.HomeBottomNav.route) { HomeScreenContent() }
+            composable(route = BottomItems.FavoriteBottomNav.route) { FavoriteScreen() }
+            composable(route = BottomItems.WatchLaterBottomNav.route) { WatchLaterScreen() }
+            composable(route = BottomItems.SettingsBottomNav.route) { SettingsScreen() }
         }
 
     }

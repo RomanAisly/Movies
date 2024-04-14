@@ -1,5 +1,6 @@
 package com.example.movies.data.remote
 
+import com.example.movies.domain.FilmsResults
 import com.google.gson.annotations.SerializedName
 
 data class ResultDTO(
@@ -32,3 +33,17 @@ data class ResultDTO(
     @SerializedName("vote_count")
     val voteCount: Double
 )
+
+fun ResultDTO.getFilmsResults(): FilmsResults {
+    return FilmsResults(
+        backdropPath = backdropPath,
+        genreIds = genreIds,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath,
+        releaseDate = releaseDate,
+        title = title,
+        voteAverage = voteAverage,
+        voteCount = voteCount
+    )
+}
