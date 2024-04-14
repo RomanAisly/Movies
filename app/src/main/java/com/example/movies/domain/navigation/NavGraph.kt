@@ -25,7 +25,7 @@ fun NavGraph() {
             startDestination = BottomItems.HOME,
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable(route = BottomItems.HOME) { HomeScreenContent()}
+            composable(route = BottomItems.HOME) { HomeScreenContent() }
             composable(route = BottomItems.FAVORITE) { FavoriteScreen() }
             composable(route = BottomItems.WATCH_LATER) { WatchLaterScreen() }
             composable(route = BottomItems.SETTINGS) { SettingsScreen() }
@@ -37,6 +37,6 @@ fun NavGraph() {
 
 @Preview(showBackground = true)
 @Composable
-fun MainPreview(){
+fun MainPreview() {
     NavGraph()
 }

@@ -7,4 +7,5 @@
     <string name="bottom_nav_item_favorites">Избранное</string>
     <string name="bottom_nav_item_watch_later">Смотреть позже</string>
     <string name="bottom_nav_item_settings">Настройки</string>
+    <string name="cont_desc_movie_post">постер фильма</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.movies.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,11 +18,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.movies.R
 import com.example.movies.data.remote.MovieApi
+import com.example.movies.ui.theme.gradForBack
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,9 +39,11 @@ fun Search() {
     var isActive by remember {
         mutableStateOf(false)
     }
-    SearchBar(modifier = Modifier
-        .fillMaxWidth()
-        .padding(start = 8.dp, end = 8.dp),
+    SearchBar(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(gradForBack)
+            .padding(start = 8.dp, end = 8.dp),
         placeholder = { Text(text = stringResource(R.string.search_placeholder)) },
         query = searchText,
         onQueryChange = { searchText = it },
@@ -49,25 +57,35 @@ fun Search() {
 @Composable
 fun HomeScreenContent() {
 
-
     val lazyGridState = rememberLazyGridState()
-
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(gradForBack),
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         userScrollEnabled = true,
         state = lazyGridState
-
     ) {
         items(8) {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
-                model = MovieApi.IMAGE_URL,
-                contentDescription = ""
+                model = ImageRequest.Builder(LocalContext.current).data(MovieApi.IMAGE_URL)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = stringResource(R.string.cont_desc_movie_post),
+                placeholder = painterResource(id = R.drawable.placeholder)
+
+
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MainPreview() {
+    HomeScreenContent()
 }
