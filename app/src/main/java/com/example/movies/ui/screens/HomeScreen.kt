@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -49,7 +50,12 @@ fun Search() {
             .fillMaxWidth()
             .background(gradForBack)
             .padding(start = 8.dp, end = 8.dp),
-        placeholder = { Text(text = stringResource(R.string.search_placeholder)) },
+        placeholder = {
+            Text(
+                text = stringResource(R.string.search_placeholder),
+                fontFamily = FontFamily.Serif
+            )
+        },
         query = searchText,
         onQueryChange = { searchText = it },
         onSearch = { isActive = false },

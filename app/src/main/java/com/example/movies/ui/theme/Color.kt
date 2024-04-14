@@ -11,7 +11,7 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF878291)
 val Pink40 = Color(0xFF7D5260)
 
-val backForSearch = Color(0xFF1CB5C7)
+val transparent = Color(0x36FFFFFF)
 
 
 val gradForBack = Brush.horizontalGradient(listOf(Color.Green, Color.Magenta))

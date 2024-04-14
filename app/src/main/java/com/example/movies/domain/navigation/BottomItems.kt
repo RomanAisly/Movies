@@ -11,7 +11,9 @@ import com.example.movies.R
 
 sealed class BottomItems(@StringRes val title: Int, val icon: ImageVector, val route: String) {
 
-    object HomeBottomNav : BottomItems(R.string.bottom_nav_item_home, Icons.Default.Home, "home")
+    data object HomeBottomNav :
+        BottomItems(R.string.bottom_nav_item_home, Icons.Default.Home, "home")
+
     data object FavoriteBottomNav :
         BottomItems(R.string.bottom_nav_item_favorites, Icons.Default.Favorite, "favorites")
 
