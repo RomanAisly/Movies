@@ -15,16 +15,18 @@ interface MovieApi {
     ): Call<List<ResponseDTO>>
 
     companion object {
-        const val BASE_URL = "https://api.themoviedb.org/"
+        private const val BASE_URL = "https://api.themoviedb.org/"
         const val IMAGE_URL = "https://image.tmdb.org/t/p/"
         const val API_KEY = "fe4a220f82927723e66d22c09c2555ba"
 
-        fun create(): MovieApi {
-            val retrofit = Retrofit.Builder()
+        private val retrofit: Retrofit by lazy {
+            Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            return retrofit.create(MovieApi::class.java)
+        }
+        val api: MovieApi by lazy {
+            retrofit.create(MovieApi::class.java)
         }
     }
 

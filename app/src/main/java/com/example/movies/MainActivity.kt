@@ -8,10 +8,12 @@ import com.example.movies.data.remote.MovieApi
 import com.example.movies.data.remote.ResponseDTO
 import com.example.movies.domain.navigation.NavGraph
 import com.example.movies.ui.theme.MoviesTheme
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +21,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             MoviesTheme {
                 NavGraph()
-                val api = MovieApi.create().getFilms(MovieApi.API_KEY, 1)
-                api.enqueue(object : Callback<List<ResponseDTO>> {
+                MovieApi.api.getFilms(MovieApi.API_KEY, 1)
+                    .enqueue(object : Callback<List<ResponseDTO>> {
                     override fun onResponse(
                         call: Call<List<ResponseDTO>>,
                         response: Response<List<ResponseDTO>>

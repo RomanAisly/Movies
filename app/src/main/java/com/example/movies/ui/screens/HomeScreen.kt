@@ -91,7 +91,6 @@ fun Search() {
 
 @Composable
 fun HomeScreenContent() {
-
     val lazyGridState = rememberLazyGridState()
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -113,8 +112,6 @@ fun HomeScreenContent() {
                     .build(),
                 contentDescription = stringResource(R.string.cont_desc_movie_post),
                 placeholder = painterResource(id = R.drawable.placeholder)
-
-
             )
         }
     }
