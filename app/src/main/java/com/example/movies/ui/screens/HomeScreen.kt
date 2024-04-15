@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.movies.R
-import com.example.movies.domain.network.ApiConstants
+import com.example.movies.data.remote.MovieApi
 import com.example.movies.ui.theme.gradForBack
 
 
@@ -108,7 +108,7 @@ fun HomeScreenContent() {
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(ApiConstants.IMAGE_URL + "w342")
+                    .data(MovieApi.IMAGE_URL)
                     .crossfade(true)
                     .build(),
                 contentDescription = stringResource(R.string.cont_desc_movie_post),
