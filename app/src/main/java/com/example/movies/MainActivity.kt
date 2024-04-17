@@ -23,22 +23,24 @@ class MainActivity : ComponentActivity() {
                 NavGraph()
                 MovieApi.api.getFilms(MovieApi.API_KEY, 1)
                     .enqueue(object : Callback<List<ResponseDTO>> {
-                    override fun onResponse(
-                        call: Call<List<ResponseDTO>>,
-                        response: Response<List<ResponseDTO>>
-                    ) {
+                        override fun onResponse(
+                            call: Call<List<ResponseDTO>>,
+                            response: Response<List<ResponseDTO>>
+                        ) {
 
-                    }
+                        }
 
-                    override fun onFailure(call: Call<List<ResponseDTO>>, t: Throwable) {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Connection has failed",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                        override fun onFailure(call: Call<List<ResponseDTO>>, t: Throwable) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Connection has failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
 
-                })
+                    })
+
+
             }
 
         }

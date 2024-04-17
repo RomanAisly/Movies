@@ -35,7 +35,6 @@ import com.example.movies.R
 import com.example.movies.data.remote.MovieApi
 import com.example.movies.ui.theme.gradForBack
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Search() {
