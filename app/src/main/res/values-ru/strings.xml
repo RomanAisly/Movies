@@ -10,4 +10,5 @@
     <string name="cont_desc_movie_post">постер фильма</string>
     <string name="cont_desc_search_icon">иконка поиска</string>
     <string name="cont_desc_close_icon">иконка закрытия поиска</string>
+    <string name="toast_connection_has_failed">Соединение прервано</string>
 </resources>

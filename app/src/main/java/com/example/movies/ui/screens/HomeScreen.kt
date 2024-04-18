@@ -2,16 +2,8 @@ package com.example.movies.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -25,18 +17,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.example.movies.R
-import com.example.movies.data.remote.ResultDTO
 import com.example.movies.ui.theme.gradForBack
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -89,42 +73,4 @@ fun Search() {
 
         }
     ) {}
-}
-
-
-@Composable
-fun HomeScreenContent(films: ResultDTO) {
-    val lazyGridState = rememberLazyGridState()
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        modifier = Modifier
-            .fillMaxSize()
-            .background(gradForBack),
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        userScrollEnabled = true,
-        state = lazyGridState
-    ) {
-        items(8) {
-            Column(modifier = Modifier.clip(shape = RoundedCornerShape(15.dp))) {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(films.poster_path)
-                        .crossfade(true)
-                        .build(),
-                    contentDescription = stringResource(R.string.cont_desc_movie_post),
-                    placeholder = painterResource(id = R.drawable.placeholder)
-                )
-
-                Text(
-                    text = films.title,
-                    modifier = Modifier.fillMaxWidth(),
-                    fontSize = 16.sp,
-                    fontFamily = FontFamily.Serif,
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-    }
 }

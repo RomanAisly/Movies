@@ -1,11 +1,15 @@
 package com.example.movies.data.remote
 
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface MovieApi {
 
     @GET("3/movie/popular")
-    suspend fun getFilmsByApi(): ResponseDTO
+    suspend fun getFilmsByApi(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int
+    ): ResponseDTO
 
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/"

@@ -11,7 +11,7 @@ class FilmsRepositoryImpl(
     override suspend fun getFilmsByApi(): Flow<CheckConnection<List<ResultDTO>>> {
         return flow {
             val filmsFromApi = try {
-                api.getFilmsByApi()
+                api.getFilmsByApi(MovieApi.API_KEY, 1)
             } catch (e: IOException) {
                 e.printStackTrace()
                 emit(CheckConnection.Fail(message = "Loading has failed"))
