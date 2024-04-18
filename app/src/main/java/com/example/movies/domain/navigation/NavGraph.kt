@@ -9,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.movies.ui.screens.FavoriteScreen
-import com.example.movies.ui.screens.HomeScreenContent
 import com.example.movies.ui.screens.Search
 import com.example.movies.ui.screens.SettingsScreen
 import com.example.movies.ui.screens.WatchLaterScreen
@@ -25,7 +24,7 @@ fun NavGraph() {
             startDestination = BottomItems.HomeBottomNav.route,
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable(route = BottomItems.HomeBottomNav.route) { HomeScreenContent() }
+            composable(route = BottomItems.HomeBottomNav.route) { }
             composable(route = BottomItems.FavoriteBottomNav.route) { FavoriteScreen() }
             composable(route = BottomItems.WatchLaterBottomNav.route) { WatchLaterScreen() }
             composable(route = BottomItems.SettingsBottomNav.route) { SettingsScreen() }

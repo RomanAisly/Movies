@@ -1,6 +1,6 @@
 package com.example.movies.data.remote
 
-data class Result(
+data class ResultDTO(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
