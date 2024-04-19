@@ -12,9 +12,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -64,6 +64,7 @@ class MainActivity : ComponentActivity() {
                 NavGraph()
                 val filmsList = viewModel.films.collectAsState().value
                 val context = LocalContext.current
+                val lazyState = rememberLazyGridState()
 
                 LaunchedEffect(key1 = viewModel.showErrorToastChannel) {
                     viewModel.showErrorToastChannel.collectLatest { showOrNot ->
@@ -86,15 +87,16 @@ class MainActivity : ComponentActivity() {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(2),
                         modifier = Modifier
-                            .wrapContentHeight()
+                            .fillMaxSize()
                             .background(gradForBack),
                         contentPadding = PaddingValues(8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        userScrollEnabled = true
+                        userScrollEnabled = true,
+                        state = lazyState
                     ) {
                         items(filmsList.size) { index ->
-                            HomeScreenContent(filmsList[index])
+                            FilmsContent(filmsList[index])
                         }
 
                     }
@@ -107,16 +109,18 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun HomeScreenContent(films: ResultDTO) {
+fun FilmsContent(films: ResultDTO) {
 
     Column(modifier = Modifier.clip(shape = RoundedCornerShape(15.dp))) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(MovieApi.IMAGE_URL)
+                .data(MovieApi.IMAGE_URL + films.poster_path)
                 .crossfade(true)
                 .build(),
             contentDescription = stringResource(R.string.cont_desc_movie_post),
-            placeholder = painterResource(id = R.drawable.placeholder)
+            placeholder = painterResource(id = R.drawable.placeholder),
+            error = painterResource(id = R.drawable.image_error),
+            modifier = Modifier.fillMaxSize()
         )
 
         Text(
