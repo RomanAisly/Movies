@@ -8,21 +8,25 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitInstance {
 
-    private val okClient: OkHttpClient = OkHttpClient.Builder()
-        .callTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .addInterceptor(
-            HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BASIC
-            }
-        )
-        .build()
+    private val okClient by lazy {
+        OkHttpClient.Builder()
+            .callTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BASIC
+                }
+            )
+            .build()
+    }
 
-    val moviesApi: MovieApi = Retrofit.Builder()
-        .baseUrl(MovieApi.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(okClient)
-        .build()
-        .create(MovieApi::class.java)
+    val retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(MovieApi.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okClient)
+            .build()
+            .create(MovieApi::class.java)
+    }
 
 }
