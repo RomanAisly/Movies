@@ -1,6 +1,7 @@
 package com.example.movies.domain.navigation
 
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.NavigationBarItem
@@ -33,7 +34,9 @@ fun BottomBar(navController: NavController) {
 
 
 
-    BottomAppBar {
+    BottomAppBar(
+        containerColor = BottomAppBarDefaults.containerColor
+    ) {
         screens.forEach { screenItem ->
             NavigationBarItem(
                 selected = currentRoute == screenItem.route,

@@ -1,5 +1,6 @@
 package com.example.movies.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,5 +14,7 @@ fun WatchLaterScreen() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Magenta)
-    )
+    ) {
+        Log.d("Watch Later", "it's from Watch Later Screen")
+    }
 }
