@@ -93,5 +93,4 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     //Lottie
     implementation("com.airbnb.android:lottie-compose:6.4.0")
-
 }

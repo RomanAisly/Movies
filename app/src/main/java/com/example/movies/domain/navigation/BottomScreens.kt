@@ -5,11 +5,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.SmartDisplay
 import androidx.compose.material.icons.filled.WatchLater
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.movies.R
 
 sealed class BottomScreens(@StringRes val title: Int, val icon: ImageVector, val route: String) {
+    data object Splash :
+        BottomScreens(R.string.bottom_nav_item_splash, Icons.Default.SmartDisplay, "splash")
+
     data object Home : BottomScreens(R.string.bottom_nav_item_home, Icons.Default.Home, "home")
     data object Favorites :
         BottomScreens(R.string.bottom_nav_item_favorites, Icons.Default.Favorite, "favorites")

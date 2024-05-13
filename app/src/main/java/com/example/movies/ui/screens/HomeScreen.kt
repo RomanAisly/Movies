@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -21,8 +22,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -38,12 +39,12 @@ fun HomeScreen() {
             .fillMaxSize()
             .background(gradForBack),
         columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
+        contentPadding = PaddingValues(7.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         userScrollEnabled = true,
     ) {
-        items(8) {
+        items(10) {
             FilmItem()
         }
     }
@@ -105,8 +106,8 @@ fun FilmItem() {
         model = "https://memepedia.ru/wp-content/uploads/2018/12/in_article_11341c19c0-768x768.jpg.",
         contentDescription = stringResource(id = R.string.cont_desc_movie_post),
         placeholder = painterResource(id = R.drawable.placeholder),
-        error = painterResource(id = R.drawable.image_error), modifier = Modifier.fillMaxSize(),
-        alignment = Alignment.Center
+        error = painterResource(id = R.drawable.image_error),
+        modifier = Modifier.clip(shape = RoundedCornerShape(15.dp))
 
     )
 }
