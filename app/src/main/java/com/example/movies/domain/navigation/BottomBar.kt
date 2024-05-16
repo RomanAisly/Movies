@@ -1,5 +1,6 @@
 package com.example.movies.domain.navigation
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Icon
@@ -9,6 +10,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -35,7 +37,8 @@ fun BottomBar(navController: NavController) {
 
 
     BottomAppBar(
-        containerColor = BottomAppBarDefaults.containerColor
+        containerColor = BottomAppBarDefaults.containerColor,
+        modifier = Modifier.fillMaxWidth()
     ) {
         screens.forEach { screenItem ->
             NavigationBarItem(

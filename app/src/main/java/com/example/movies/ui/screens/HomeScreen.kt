@@ -4,9 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,9 +34,10 @@ import com.example.movies.ui.theme.gradForBack
 
 @Composable
 fun HomeScreen() {
+    Search()
     LazyVerticalGrid(
         modifier = Modifier
-            .fillMaxSize()
+            .wrapContentSize()
             .background(gradForBack),
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(7.dp),

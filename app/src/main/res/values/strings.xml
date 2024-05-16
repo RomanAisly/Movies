@@ -2,7 +2,6 @@
     <string name="app_name">Movies</string>
     <string name="search_placeholder">Search</string>
     <string name="cont_desc_navigation_item">navigation item</string>
-    <string name="bottom_nav_item_splash">Splash</string>
     <string name="bottom_nav_item_home">Home</string>
     <string name="bottom_nav_item_favorites">Favorites</string>
     <string name="bottom_nav_item_watch_later">Watch Later</string>
