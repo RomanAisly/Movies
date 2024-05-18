@@ -15,8 +15,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.movies.domain.navigation.BottomBar
 import com.example.movies.domain.navigation.BottomNavGraph
 import com.example.movies.ui.theme.MoviesTheme
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
