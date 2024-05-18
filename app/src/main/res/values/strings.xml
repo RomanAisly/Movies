@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Movies</string>
     <string name="search_placeholder">Search</string>
-    <string name="cont_desc_navigation_item">navigation item</string>
+    <string name="cont_desc_navigation_item">navigation icon</string>
     <string name="bottom_nav_item_home">Home</string>
     <string name="bottom_nav_item_favorites">Favorites</string>
     <string name="bottom_nav_item_watch_later">Watch Later</string>
@@ -10,4 +10,9 @@
     <string name="cont_desc_search_icon">search icon</string>
     <string name="cont_desc_close_icon">close icon</string>
     <string name="toast_connection_has_failed">Connection has failed</string>
+    <string name="cont_desc_settings_icon">settings icon</string>
+    <string name="settings_account">Account</string>
+    <string name="settings_security">Security</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_storage">Storage</string>
 </resources>

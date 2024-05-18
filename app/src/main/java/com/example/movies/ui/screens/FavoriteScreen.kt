@@ -12,7 +12,7 @@ fun FavoriteScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Green)
+            .background(Color.Magenta)
     ) {
         Search()
     }

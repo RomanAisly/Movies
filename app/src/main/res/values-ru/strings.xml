@@ -11,4 +11,9 @@
     <string name="cont_desc_search_icon">иконка поиска</string>
     <string name="cont_desc_close_icon">иконка закрытия поиска</string>
     <string name="toast_connection_has_failed">Соединение прервано</string>
+    <string name="cont_desc_settings_icon">иконка настроек</string>
+    <string name="settings_account">Аккаунт</string>
+    <string name="settings_security">Безопасность</string>
+    <string name="settings_notifications">Уведомления</string>
+    <string name="settings_storage">Память</string>
 </resources>

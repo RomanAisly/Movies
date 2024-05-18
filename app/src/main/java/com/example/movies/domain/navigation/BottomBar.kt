@@ -5,6 +5,7 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
@@ -37,17 +38,17 @@ fun BottomBar(navController: NavController) {
 
 
     BottomAppBar(
-        containerColor = BottomAppBarDefaults.containerColor,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
     ) {
         screens.forEach { screenItem ->
             NavigationBarItem(
                 selected = currentRoute == screenItem.route,
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.White,
-                    unselectedIconColor = LocalContentColor.current.copy(alpha = 0.4f),
+                    unselectedIconColor = LocalContentColor.current.copy(alpha = 0.5f),
                     selectedTextColor = Color.White,
-                    unselectedTextColor = LocalContentColor.current.copy(alpha = 0.4f)
+                    unselectedTextColor = LocalContentColor.current.copy(alpha = 0.5f)
                 ),
                 onClick = {
                     navController.navigate(screenItem.route) {
@@ -66,7 +67,8 @@ fun BottomBar(navController: NavController) {
                         text = LocalContext.current.getString(screenItem.title),
                         fontSize = 10.sp,
                         fontFamily = FontFamily.Serif,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 })
         }
