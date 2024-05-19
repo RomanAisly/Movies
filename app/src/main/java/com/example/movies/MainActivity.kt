@@ -1,18 +1,16 @@
 package com.example.movies
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.compose.rememberNavController
-import com.example.movies.domain.navigation.BottomBar
 import com.example.movies.domain.navigation.BottomNavGraph
 import com.example.movies.ui.theme.MoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,21 +28,29 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    Column(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            BottomNavGraph(navHostController = navController)
-            BottomBar(navController = navController)
-        }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+        BottomNavGraph(navHostController = navController)
     }
 }
 
+@Composable
+fun Constr() {
+
+    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+        val (botom) = createRefs()
+
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun Preview() {
+
+}
 //@Composable
 //fun FilmsContent(films: ResultDTO) {
 //

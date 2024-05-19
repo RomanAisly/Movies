@@ -2,7 +2,6 @@ package com.example.movies.domain.navigation
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -22,7 +21,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.movies.R
-
+import com.example.movies.ui.theme.backForBottomBar
 
 @Composable
 fun BottomBar(navController: NavController) {
@@ -35,11 +34,9 @@ fun BottomBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-
-
     BottomAppBar(
         modifier = Modifier.fillMaxWidth(),
-        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
+        containerColor = backForBottomBar,
     ) {
         screens.forEach { screenItem ->
             NavigationBarItem(
@@ -72,6 +69,5 @@ fun BottomBar(navController: NavController) {
                     )
                 })
         }
-
     }
 }

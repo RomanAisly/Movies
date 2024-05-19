@@ -19,4 +19,5 @@ fun BottomNavGraph(navHostController: NavHostController) {
         composable(route = BottomScreens.WatchLater.route) { WatchLaterScreen() }
         composable(route = BottomScreens.Settings.route) { SettingsScreen() }
     }
+    BottomBar(navController = navHostController)
 }

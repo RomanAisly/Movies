@@ -40,20 +40,23 @@ import com.example.movies.ui.theme.gradForBack
 
 @Composable
 fun HomeScreen() {
-    Search()
-    LazyVerticalGrid(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(gradForBack),
-        columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        userScrollEnabled = true,
-        flingBehavior = ScrollableDefaults.flingBehavior()
-    ) {
-        items(10) {
-            FilmItem()
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        Search()
+        LazyVerticalGrid(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(gradForBack),
+            columns = GridCells.Fixed(2),
+            contentPadding = PaddingValues(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            userScrollEnabled = true,
+            flingBehavior = ScrollableDefaults.flingBehavior()
+        ) {
+            items(10) {
+                FilmItem()
+            }
         }
     }
 }
@@ -71,7 +74,7 @@ fun Search() {
         modifier = Modifier
             .fillMaxWidth()
             .background(gradForBack)
-            .padding(start = 8.dp, end = 8.dp, bottom = 3.dp),
+            .padding(start = 8.dp, end = 8.dp),
         placeholder = {
             Text(
                 text = stringResource(R.string.search_placeholder),
