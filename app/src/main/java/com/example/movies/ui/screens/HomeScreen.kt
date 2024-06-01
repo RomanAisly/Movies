@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -21,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,16 +33,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.movies.R
+import com.example.movies.data.remote.ResultDTO
+import com.example.movies.domain.di.AppModule
 import com.example.movies.ui.theme.gradForBack
+import com.example.movies.ui.viewmodels.HomeViewModel
 
 @Composable
-fun HomeScreen() {
-
+fun HomeScreen(viewModel: HomeViewModel) {
+    val allFilms = viewModel.allFilms.collectAsState().value
     Column(modifier = Modifier.fillMaxSize()) {
         Search()
         LazyVerticalGrid(
@@ -54,8 +58,8 @@ fun HomeScreen() {
             userScrollEnabled = true,
             flingBehavior = ScrollableDefaults.flingBehavior()
         ) {
-            items(10) {
-                FilmItem()
+            items(allFilms) { films ->
+                FilmItem(films)
             }
         }
     }
@@ -112,10 +116,10 @@ fun Search() {
 }
 
 @Composable
-fun FilmItem() {
+fun FilmItem(films: ResultDTO) {
     Column(modifier = Modifier.fillMaxSize()) {
         AsyncImage(
-            model = "https://memepedia.ru/wp-content/uploads/2018/12/in_article_11341c19c0-768x768.jpg.",
+            model = AppModule.IMAGE_URL + films.poster_path,
             contentDescription = stringResource(id = R.string.cont_desc_movie_post),
             placeholder = painterResource(id = R.drawable.placeholder),
             error = painterResource(id = R.drawable.image_error),
@@ -124,7 +128,7 @@ fun FilmItem() {
                 .clip(shape = RoundedCornerShape(15.dp))
         )
         Text(
-            text = "Name",
+            text = films.title,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = 3.dp),
@@ -136,8 +140,8 @@ fun FilmItem() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun Preview() {
-    HomeScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun Preview() {
+//
+//}

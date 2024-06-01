@@ -8,13 +8,14 @@ import com.example.movies.ui.screens.FavoriteScreen
 import com.example.movies.ui.screens.HomeScreen
 import com.example.movies.ui.screens.SettingsScreen
 import com.example.movies.ui.screens.WatchLaterScreen
+import com.example.movies.ui.viewmodels.HomeViewModel
 
 @Composable
-fun BottomNavGraph(navHostController: NavHostController) {
+fun BottomNavGraph(navHostController: NavHostController, viewModel: HomeViewModel) {
     NavHost(
         navController = navHostController, startDestination = BottomScreens.Home.route
     ) {
-        composable(route = BottomScreens.Home.route) { HomeScreen() }
+        composable(route = BottomScreens.Home.route) { HomeScreen(viewModel) }
         composable(route = BottomScreens.Favorites.route) { FavoriteScreen() }
         composable(route = BottomScreens.WatchLater.route) { WatchLaterScreen() }
         composable(route = BottomScreens.Settings.route) { SettingsScreen() }

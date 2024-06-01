@@ -4,15 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.movies.domain.navigation.BottomNavGraph
 import com.example.movies.ui.theme.MoviesTheme
+import com.example.movies.ui.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,29 +21,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MoviesTheme {
-                MainScreen()
+                Box(contentAlignment = Alignment.BottomCenter) {
+                    val navController = rememberNavController()
+                    val viewModel = hiltViewModel<HomeViewModel>()
+                    BottomNavGraph(navHostController = navController, viewModel)
+                }
             }
         }
     }
 }
-
-@Composable
-fun MainScreen() {
-    val navController = rememberNavController()
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        BottomNavGraph(navHostController = navController)
-    }
-}
-
-@Composable
-fun Constr() {
-
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (botom) = createRefs()
-
-    }
-}
-
 
 @Preview(showBackground = true)
 @Composable
