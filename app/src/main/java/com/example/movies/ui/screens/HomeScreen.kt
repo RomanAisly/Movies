@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -60,17 +61,19 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
+    val lazyGridState = rememberLazyGridState()
     val allFilms = viewModel.allFilms.collectAsState().value
     val context = LocalContext.current
-    LaunchedEffect(key1 = viewModel.showErrorToast) {
+    LaunchedEffect(viewModel.showErrorToast) {
         viewModel.showErrorToast.collectLatest { toast ->
             if (toast) {
                 Toast.makeText(
                     context,
-                    getString(context, R.string.toast_connection_has_failed),
-                    Toast.LENGTH_SHORT
+                    getString(context, R.string.toast_request_error),
+                    5000
                 ).show()
             }
+
         }
     }
 
@@ -95,7 +98,8 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 userScrollEnabled = true,
-                flingBehavior = ScrollableDefaults.flingBehavior()
+                flingBehavior = ScrollableDefaults.flingBehavior(),
+                state = lazyGridState
             ) {
                 items(allFilms) { films ->
                     FilmItem(films)
@@ -188,16 +192,22 @@ fun FilmItem(films: ResultDTO) {
                     .size(44.dp)
                     .align(alignment = Alignment.BottomStart)
                     .padding(start = 4.dp, bottom = 4.dp),
-                containerColor = Color(alpha = 0.5f, blue = 0.5f, red = 0.5f, green = 0.5f),
+                containerColor = Color(0.5f, 0.5f, 0.5f, 0.5f),
                 content = {
                     if (isInFavorite == false) {
                         Image(
-                            imageVector = Icons.Default.FavoriteBorder, contentDescription = "",
+                            imageVector = Icons.Default.FavoriteBorder,
+                            contentDescription = stringResource(
+                                R.string.cont_desc_out_from_favorites
+                            ),
                             colorFilter = ColorFilter.tint(Color.White)
                         )
                     } else {
                         Image(
-                            imageVector = Icons.Default.Favorite, contentDescription = "",
+                            imageVector = Icons.Default.Favorite,
+                            contentDescription = stringResource(
+                                R.string.cont_desc_add_in_favorites
+                            ),
                             colorFilter = ColorFilter.tint(Color.Red)
                         )
                     }
