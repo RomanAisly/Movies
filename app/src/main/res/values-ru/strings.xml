@@ -7,10 +7,9 @@
     <string name="bottom_nav_item_favorites">Избранное</string>
     <string name="bottom_nav_item_watch_later">Смотреть позже</string>
     <string name="bottom_nav_item_settings">Настройки</string>
-    <string name="cont_desc_movie_post">постер фильма</string>
     <string name="cont_desc_search_icon">иконка поиска</string>
     <string name="cont_desc_close_icon">иконка закрытия поиска</string>
-    <string name="toast_connection_has_failed">Соединение прервано</string>
+    <string name="toast_connection_has_failed">Ошибка Запроса:\nповторите позже или проверьте интернет соединение</string>
     <string name="cont_desc_settings_icon">иконка настроек</string>
     <string name="settings_account">Аккаунт</string>
     <string name="settings_security">Безопасность</string>
