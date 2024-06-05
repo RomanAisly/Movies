@@ -93,7 +93,7 @@ dependencies {
     kapt("androidx.hilt:hilt-compiler:1.2.0")
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-compiler:2.49")
-    //Navigation
+    //Hilt-Navigation
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     //Lottie
     implementation("com.airbnb.android:lottie-compose:6.4.0")

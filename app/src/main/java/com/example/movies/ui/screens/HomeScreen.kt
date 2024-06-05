@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -26,6 +25,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.CircularProgressIndicator
@@ -183,15 +183,40 @@ fun FilmItem(films: ResultDTO) {
             .clickable { }
     ) {
 
-        Box {
-            AsyncImage(
-                model = AppModule.IMAGE_URL + films.poster_path,
-                contentDescription = films.title,
-                placeholder = painterResource(id = R.drawable.placeholder),
-                error = painterResource(id = R.drawable.image_error),
-                modifier = Modifier.clip(RoundedCornerShape(20.dp))
-            )
 
+        AsyncImage(
+            model = AppModule.IMAGE_URL + films.poster_path,
+            contentDescription = films.title,
+            placeholder = painterResource(id = R.drawable.placeholder),
+            error = painterResource(id = R.drawable.image_error),
+            modifier = Modifier.clip(RoundedCornerShape(20.dp))
+        )
+
+
+
+
+        Text(
+            text = films.title,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 4.dp,
+                    bottom = 3.dp
+                ),
+            textAlign = TextAlign.Center,
+            fontSize = 18.sp,
+            maxLines = 1,
+            fontFamily = FontFamily.SansSerif,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp, start = 8.dp, end = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             FloatingActionButton(
                 onClick = {
                     if (isInFavorite == false) {
@@ -202,9 +227,7 @@ fun FilmItem(films: ResultDTO) {
                 },
                 shape = RoundedCornerShape(32.dp),
                 modifier = Modifier
-                    .size(44.dp)
-                    .align(alignment = Alignment.BottomStart)
-                    .padding(start = 4.dp, bottom = 4.dp),
+                    .size(35.dp),
                 containerColor = Color(0.5f, 0.5f, 0.5f, 0.5f),
                 content = {
                     if (isInFavorite == false) {
@@ -227,33 +250,26 @@ fun FilmItem(films: ResultDTO) {
 
                 }
             )
-        }
 
-        Text(
-            text = films.title,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    top = 4.dp,
-                    bottom = 4.dp
-                ),
-            textAlign = TextAlign.Center,
-            fontSize = 18.sp,
-            maxLines = 1,
-            fontFamily = FontFamily.SansSerif,
-            color = MaterialTheme.colorScheme.onSurface
-        )
-
-        Row(
-            Modifier
-                .wrapContentWidth()
-                .align(Alignment.CenterHorizontally)
-                .padding(bottom = 4.dp)
-        ) {
             RatingBar(
                 starsModifier = Modifier
                     .size(20.dp),
                 rating = films.vote_average / 2
+            )
+
+            FloatingActionButton(
+                onClick = {},
+                shape = RoundedCornerShape(32.dp),
+                modifier = Modifier
+                    .size(35.dp),
+                containerColor = Color(0.5f, 0.5f, 0.5f, 0.5f),
+                content = {
+                    Image(
+                        imageVector = Icons.Default.Share,
+                        contentDescription = stringResource(R.string.cont_desc_share_the_film),
+                        colorFilter = ColorFilter.tint(Color.White)
+                    )
+                }
             )
         }
     }
