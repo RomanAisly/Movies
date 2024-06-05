@@ -16,4 +16,5 @@
     <string name="settings_security">Security</string>
     <string name="settings_notifications">Notifications</string>
     <string name="settings_storage">Storage</string>
+    <string name="cont_desc_rating_of_the_film">rating of the film</string>
 </resources>

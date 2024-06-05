@@ -9,20 +9,25 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.StarHalf
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.rounded.Star
+import androidx.compose.material.icons.rounded.StarOutline
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -87,7 +92,11 @@ fun HomeScreen(viewModel: HomeViewModel) {
             CircularProgressIndicator()
         }
     } else {
-        Column(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 75.dp)
+        ) {
             Search()
             LazyVerticalGrid(
                 modifier = Modifier
@@ -163,20 +172,24 @@ fun Search() {
 @Composable
 fun FilmItem(films: ResultDTO) {
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        Box {
-            var isInFavorite by rememberSaveable {
-                mutableStateOf(false)
-            }
+    var isInFavorite by rememberSaveable {
+        mutableStateOf(false)
+    }
 
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .clip(RoundedCornerShape(20.dp))
+            .clickable { }
+    ) {
+
+        Box {
             AsyncImage(
                 model = AppModule.IMAGE_URL + films.poster_path,
                 contentDescription = films.title,
                 placeholder = painterResource(id = R.drawable.placeholder),
                 error = painterResource(id = R.drawable.image_error),
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clip(shape = RoundedCornerShape(16.dp))
+                modifier = Modifier.clip(RoundedCornerShape(20.dp))
             )
 
             FloatingActionButton(
@@ -219,12 +232,69 @@ fun FilmItem(films: ResultDTO) {
         Text(
             text = films.title,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 2.dp),
+                .fillMaxWidth()
+                .padding(
+                    top = 4.dp,
+                    bottom = 4.dp
+                ),
             textAlign = TextAlign.Center,
             fontSize = 18.sp,
+            maxLines = 1,
             fontFamily = FontFamily.SansSerif,
             color = MaterialTheme.colorScheme.onSurface
         )
+
+        Row(
+            Modifier
+                .wrapContentWidth()
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 4.dp)
+        ) {
+            RatingBar(
+                starsModifier = Modifier
+                    .size(20.dp),
+                rating = films.vote_average / 2
+            )
+        }
+    }
+}
+
+@Composable
+fun RatingBar(
+    modifier: Modifier = Modifier,
+    starsModifier: Modifier = Modifier,
+    rating: Double = 0.0,
+    stars: Int = 5,
+    starsColor: Color = Color.Yellow
+) {
+    val filledStars = kotlin.math.floor(rating).toInt()
+    val outFilledStars = (stars - kotlin.math.ceil(rating)).toInt()
+    val helfFilledStars = !(rating.rem(1).equals(0.0))
+
+    Row(modifier = modifier) {
+        repeat(filledStars) {
+            Icon(
+                modifier = starsModifier,
+                imageVector = Icons.Rounded.Star,
+                contentDescription = stringResource(R.string.cont_desc_rating_of_the_film),
+                tint = starsColor
+            )
+        }
+        if (helfFilledStars) {
+            Icon(
+                modifier = starsModifier,
+                imageVector = Icons.AutoMirrored.Rounded.StarHalf,
+                contentDescription = stringResource(R.string.cont_desc_rating_of_the_film),
+                tint = starsColor
+            )
+        }
+        repeat(outFilledStars) {
+            Icon(
+                modifier = starsModifier,
+                imageVector = Icons.Rounded.StarOutline,
+                contentDescription = stringResource(R.string.cont_desc_rating_of_the_film),
+                tint = starsColor
+            )
+        }
     }
 }

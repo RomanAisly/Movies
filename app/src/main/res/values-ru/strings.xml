@@ -17,4 +17,5 @@
     <string name="settings_security">Безопасность</string>
     <string name="settings_notifications">Уведомления</string>
     <string name="settings_storage">Память</string>
+    <string name="cont_desc_rating_of_the_film">рейтинг фильма</string>
 </resources>
