@@ -1,9 +1,6 @@
-package com.example.movies.data
+package com.example.movies.data.remote
 
 
-import com.example.movies.data.remote.CheckConnection
-import com.example.movies.data.remote.FilmsApi
-import com.example.movies.data.remote.ResultDTO
 import com.example.movies.domain.di.AppModule
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

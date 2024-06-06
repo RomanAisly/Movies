@@ -56,19 +56,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getString
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.movies.R
 import com.example.movies.data.remote.ResultDTO
 import com.example.movies.domain.di.AppModule
+import com.example.movies.domain.navigation.BottomScreens
 import com.example.movies.ui.theme.gradForBack
 import com.example.movies.ui.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
+fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
     val lazyGridState = rememberLazyGridState()
     val allFilms = viewModel.allFilms.collectAsState().value
     val context = LocalContext.current
+
     LaunchedEffect(viewModel.showErrorToast) {
         viewModel.showErrorToast.collectLatest { toast ->
             if (toast) {
@@ -111,7 +114,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
                 state = lazyGridState
             ) {
                 items(allFilms) { films ->
-                    FilmItem(films)
+                    FilmItem(films, navHostController)
                 }
             }
         }
@@ -170,19 +173,18 @@ fun Search() {
 }
 
 @Composable
-fun FilmItem(films: ResultDTO) {
-
+fun FilmItem(films: ResultDTO, navHostController: NavHostController) {
     var isInFavorite by rememberSaveable {
         mutableStateOf(false)
     }
+
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .clip(RoundedCornerShape(20.dp))
-            .clickable { }
+            .clickable { navHostController.navigate(route = BottomScreens.Details.route) }
     ) {
-
 
         AsyncImage(
             model = AppModule.IMAGE_URL + films.poster_path,
@@ -191,9 +193,6 @@ fun FilmItem(films: ResultDTO) {
             error = painterResource(id = R.drawable.image_error),
             modifier = Modifier.clip(RoundedCornerShape(20.dp))
         )
-
-
-
 
         Text(
             text = films.title,

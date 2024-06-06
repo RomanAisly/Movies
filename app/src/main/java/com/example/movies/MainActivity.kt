@@ -32,15 +32,14 @@ class MainActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen() {
-    val navController = rememberNavController()
-    val viewModel = hiltViewModel<HomeViewModel>()
+    val navHostController = rememberNavController()
+    val homeViewModel = hiltViewModel<HomeViewModel>()
     Scaffold(modifier = Modifier.fillMaxSize(),
-        bottomBar = { BottomBar(navHostController = navController) },
-        content = { BottomNavGraph(navHostController = navController, viewModel) })
+        bottomBar = { BottomBar(navHostController = navHostController) },
+        content = {
+            BottomNavGraph(
+                navHostController = navHostController,
+                homeViewModel
+            )
+        })
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun Preview() {
-//
-//}

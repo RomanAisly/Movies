@@ -2,6 +2,7 @@ package com.example.movies.domain.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Details
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
@@ -19,4 +20,7 @@ sealed class BottomScreens(@StringRes val title: Int, val icon: ImageVector, val
 
     data object Settings :
         BottomScreens(R.string.bottom_nav_item_settings, Icons.Default.Settings, "settings")
+
+    data object Details :
+        BottomScreens(R.string.bottom_nav_item_details, Icons.Default.Details, "details")
 }

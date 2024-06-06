@@ -2,8 +2,8 @@ package com.example.movies.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movies.data.FilmsRepository
 import com.example.movies.data.remote.CheckConnection
+import com.example.movies.data.remote.FilmsRepository
 import com.example.movies.data.remote.ResultDTO
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
