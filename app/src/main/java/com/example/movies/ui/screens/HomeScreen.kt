@@ -62,7 +62,7 @@ import com.example.movies.R
 import com.example.movies.data.remote.ResultDTO
 import com.example.movies.domain.di.AppModule
 import com.example.movies.domain.navigation.BottomScreens
-import com.example.movies.ui.theme.gradForBack
+import com.example.movies.ui.theme.backForHomeScreen
 import com.example.movies.ui.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -89,7 +89,7 @@ fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(gradForBack),
+                .background(backForHomeScreen),
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
@@ -104,7 +104,7 @@ fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
             LazyVerticalGrid(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(gradForBack),
+                    .background(backForHomeScreen),
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -134,7 +134,7 @@ fun Search() {
     SearchBar(
         modifier = Modifier
             .fillMaxWidth()
-            .background(gradForBack)
+            .background(backForHomeScreen)
             .padding(start = 8.dp, end = 8.dp),
         placeholder = {
             Text(

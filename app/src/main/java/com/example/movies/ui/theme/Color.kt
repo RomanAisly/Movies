@@ -3,14 +3,20 @@ package com.example.movies.ui.theme
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFFDFCFF)
-val PurpleGrey80 = Color(0xFFBEABDD)
-val Pink80 = Color(0xFFEFB8C8)
+val lightThemeColor1 = Color(0xFFFDFCFF)
+val lightThemeColor2 = Color(0xFFBEABDD)
+val lightThemeColor3 = Color(0xFFEFB8C8)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF878291)
-val Pink40 = Color(0xFF7D5260)
+val darkThemeColor1 = Color(0xFF6650a4)
+val darkThemeColor2 = Color(0xFF878291)
+val darkThemeColor3 = Color(0xFF7D5260)
 
 val backForBottomBar = Color(0xFF32A36C)
 
-val gradForBack = Brush.horizontalGradient(listOf(Color.Green, Color.Magenta))
+val pink = Color(0xFFFD6A9C)
+
+val cyan = Color(0xFF73A6FC)
+
+val backForHomeScreen = Brush.horizontalGradient(listOf(Color.Green, Color.Magenta))
+
+val backForDetailsScreen = Brush.linearGradient(listOf(Color.Green, Color.Blue))
