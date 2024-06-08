@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.WatchLater
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +40,7 @@ import com.example.movies.domain.di.AppModule
 import com.example.movies.ui.theme.backForDetailsScreen
 import com.example.movies.ui.theme.cyan
 import com.example.movies.ui.theme.pink
+import com.example.movies.ui.theme.purple
 
 @Composable
 fun DetailsScreen() {
@@ -125,6 +127,22 @@ fun DetailsScreen() {
                 starsModifier = Modifier
                     .size(40.dp),
                 rating = 3.5
+            )
+
+            FloatingActionButton(
+                onClick = {},
+                shape = RoundedCornerShape(30.dp),
+                elevation = FloatingActionButtonDefaults.elevation(focusedElevation = 8.dp),
+                modifier = Modifier
+                    .size(45.dp),
+                containerColor = purple,
+                content = {
+                    Image(
+                        imageVector = Icons.Default.WatchLater,
+                        contentDescription = stringResource(R.string.cont_desc_watch_later),
+                        colorFilter = ColorFilter.tint(Color.White)
+                    )
+                }
             )
 
             FloatingActionButton(

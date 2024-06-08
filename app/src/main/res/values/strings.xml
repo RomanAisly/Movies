@@ -9,6 +9,7 @@
     <string name="cont_desc_settings_icon">settings</string>
     <string name="cont_desc_rating_of_the_film">rating of the film</string>
     <string name="cont_desc_share_the_film">share the film</string>
+    <string name="cont_desc_watch_later">add to watch later list</string>
     <string name="bottom_nav_item_home">Home</string>
     <string name="bottom_nav_item_favorites">Favorites</string>
     <string name="bottom_nav_item_watch_later">Watch Later</string>

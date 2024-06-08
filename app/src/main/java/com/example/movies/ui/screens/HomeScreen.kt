@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.StarHalf
@@ -66,9 +65,9 @@ import com.example.movies.ui.theme.backForHomeScreen
 import com.example.movies.ui.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 
+
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
-    val lazyGridState = rememberLazyGridState()
     val allFilms = viewModel.allFilms.collectAsState().value
     val context = LocalContext.current
 
@@ -111,7 +110,6 @@ fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 userScrollEnabled = true,
                 flingBehavior = ScrollableDefaults.flingBehavior(),
-                state = lazyGridState
             ) {
                 items(allFilms) { films ->
                     FilmItem(films, navHostController)

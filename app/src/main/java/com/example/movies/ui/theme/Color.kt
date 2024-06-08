@@ -12,10 +12,9 @@ val darkThemeColor2 = Color(0xFF878291)
 val darkThemeColor3 = Color(0xFF7D5260)
 
 val backForBottomBar = Color(0xFF32A36C)
-
 val pink = Color(0xFFFD6A9C)
-
-val cyan = Color(0xFF73A6FC)
+val purple = Color(0xFF8D6ACA)
+val cyan = Color(0xFF65C2C2)
 
 val backForHomeScreen = Brush.horizontalGradient(listOf(Color.Green, Color.Magenta))
 
