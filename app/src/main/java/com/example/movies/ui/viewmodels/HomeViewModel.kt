@@ -38,6 +38,10 @@ class HomeViewModel @Inject constructor(private val filmsRepository: FilmsReposi
                             _allFilms.update { films }
                         }
                     }
+
+                    is CheckConnection.Loading -> {
+
+                    }
                 }
             }
         }

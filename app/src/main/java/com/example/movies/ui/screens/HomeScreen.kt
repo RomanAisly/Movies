@@ -192,20 +192,22 @@ fun FilmItem(films: ResultDTO, navHostController: NavHostController) {
             modifier = Modifier.clip(RoundedCornerShape(20.dp))
         )
 
-        Text(
-            text = films.title,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    top = 4.dp,
-                    bottom = 3.dp
-                ),
-            textAlign = TextAlign.Center,
-            fontSize = 18.sp,
-            maxLines = 1,
-            fontFamily = FontFamily.SansSerif,
-            color = MaterialTheme.colorScheme.onSurface
-        )
+        films.title?.let {
+            Text(
+                text = it,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        top = 4.dp,
+                        bottom = 3.dp
+                    ),
+                textAlign = TextAlign.Center,
+                fontSize = 18.sp,
+                maxLines = 1,
+                fontFamily = FontFamily.SansSerif,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        }
 
         Row(
             Modifier
@@ -251,7 +253,7 @@ fun FilmItem(films: ResultDTO, navHostController: NavHostController) {
             RatingBar(
                 starsModifier = Modifier
                     .size(20.dp),
-                rating = films.vote_average / 2
+                rating = films.vote_average?.div(2) ?: 3.5
             )
 
             FloatingActionButton(

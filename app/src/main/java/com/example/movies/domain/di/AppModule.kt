@@ -1,5 +1,8 @@
 package com.example.movies.domain.di
 
+import android.app.Application
+import androidx.room.Room
+import com.example.movies.data.local.FilmsDB
 import com.example.movies.data.remote.FilmsApi
 import dagger.Module
 import dagger.Provides
@@ -41,4 +44,15 @@ object AppModule {
         .client(okClient)
         .build()
         .create(FilmsApi::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideFilmsDB(app: Application): FilmsDB {
+        return Room.databaseBuilder(
+            app,
+            FilmsDB::class.java,
+            "filmsDB"
+        ).build()
+    }
 }

@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.movies.domain.navigation.BottomBar
 import com.example.movies.domain.navigation.BottomNavGraph
 import com.example.movies.ui.theme.MoviesTheme
+import com.example.movies.ui.viewmodels.DetailsViewModel
 import com.example.movies.ui.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,12 +35,14 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     val navHostController = rememberNavController()
     val homeViewModel = hiltViewModel<HomeViewModel>()
+    val detailsViewModel = hiltViewModel<DetailsViewModel>()
     Scaffold(modifier = Modifier.fillMaxSize(),
         bottomBar = { BottomBar(navHostController = navHostController) },
         content = {
             BottomNavGraph(
                 navHostController = navHostController,
-                homeViewModel
+                homeViewModel,
+                detailsViewModel
             )
         })
 }
