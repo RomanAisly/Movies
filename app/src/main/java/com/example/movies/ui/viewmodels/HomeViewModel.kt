@@ -3,7 +3,7 @@ package com.example.movies.ui.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movies.data.remote.CheckConnection
-import com.example.movies.data.remote.FilmsRepository
+import com.example.movies.data.remote.FilmsRepositoryImpl
 import com.example.movies.data.remote.ResultDTO
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val filmsRepository: FilmsRepository) :
+class HomeViewModel @Inject constructor(private val filmsRepositoryImpl: FilmsRepositoryImpl) :
     ViewModel() {
 
     private val _allFilms = MutableStateFlow<List<ResultDTO>>(emptyList())
@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(private val filmsRepository: FilmsReposi
 
     init {
         viewModelScope.launch {
-            filmsRepository.getFilms().collectLatest { result ->
+            filmsRepositoryImpl.getFilmsRemote().collectLatest { result ->
                 when (result) {
                     is CheckConnection.Error -> {
                         _showErrorToast.send(true)
@@ -37,10 +37,6 @@ class HomeViewModel @Inject constructor(private val filmsRepository: FilmsReposi
                         result.data?.let { films ->
                             _allFilms.update { films }
                         }
-                    }
-
-                    is CheckConnection.Loading -> {
-
                     }
                 }
             }

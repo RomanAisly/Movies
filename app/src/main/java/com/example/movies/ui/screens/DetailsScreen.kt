@@ -21,7 +21,6 @@ import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -37,7 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.movies.R
-import com.example.movies.domain.FilmItem
 import com.example.movies.domain.di.AppModule
 import com.example.movies.ui.theme.backForDetailsScreen
 import com.example.movies.ui.theme.cyan
@@ -47,7 +45,6 @@ import com.example.movies.ui.viewmodels.DetailsViewModel
 
 @Composable
 fun DetailsScreen(viewModel: DetailsViewModel) {
-    val detailState = viewModel.detailsState.collectAsState().value
     var isInFavorite by rememberSaveable {
         mutableStateOf(false)
     }
@@ -58,7 +55,7 @@ fun DetailsScreen(viewModel: DetailsViewModel) {
             .padding(8.dp)
     ) {
         AsyncImage(
-            model = AppModule.IMAGE_URL + (detailState.film?.backdrop_path),
+            model = AppModule.IMAGE_URL,
             contentDescription = "",
             placeholder = painterResource(id = R.drawable.placeholder),
             error = painterResource(id = R.drawable.image_error),
@@ -66,29 +63,27 @@ fun DetailsScreen(viewModel: DetailsViewModel) {
                 .wrapContentSize()
                 .align(Alignment.CenterHorizontally)
         )
-        detailState.film?.title?.let {
-            Text(
-                text = it,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.dp, bottom = 4.dp),
-                fontSize = 18.sp,
-                maxLines = 1,
-                fontFamily = FontFamily.SansSerif,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
-        detailState.film?.overview?.let {
-            Text(
-                text = it,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.dp, bottom = 4.dp),
-                fontSize = 16.sp,
-                fontFamily = FontFamily.Cursive,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
+        Text(
+            text = "title",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp, bottom = 4.dp),
+            fontSize = 18.sp,
+            maxLines = 1,
+            fontFamily = FontFamily.SansSerif,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
+        Text(
+            text = "overview",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp, bottom = 4.dp),
+            fontSize = 16.sp,
+            fontFamily = FontFamily.Cursive,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
         Row(
             Modifier
                 .fillMaxWidth()
@@ -131,13 +126,13 @@ fun DetailsScreen(viewModel: DetailsViewModel) {
                 }
             )
 
-            detailState.film?.vote_average?.let {
-                RatingBar(
-                    starsModifier = Modifier
-                        .size(40.dp),
-                    rating = it
-                )
-            }
+
+            RatingBar(
+                starsModifier = Modifier
+                    .size(40.dp),
+                rating = 3.6
+            )
+
 
             FloatingActionButton(
                 onClick = {},
@@ -173,8 +168,3 @@ fun DetailsScreen(viewModel: DetailsViewModel) {
         }
     }
 }
-
-data class DetailsState(
-    val isLoading: Boolean = false,
-    val film: FilmItem? = null
-)

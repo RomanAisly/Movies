@@ -10,11 +10,11 @@ import androidx.room.Upsert
 @Dao
 interface FilmsDAO {
 
-    @Upsert
-    suspend fun upsertFilms(item: List<FilmsEntity>)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFilms(item: List<FilmsEntity>)
+
+    @Upsert
+    suspend fun upsertFilms(item: List<FilmsEntity>)
 
     @Delete
     suspend fun deleteFilms(item: FilmsEntity)

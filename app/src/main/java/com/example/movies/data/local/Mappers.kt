@@ -19,7 +19,7 @@ fun ResultDTO.toFilmsEntity(): FilmsEntity {
         original_title = original_title ?: "",
         video = video ?: false,
         genre_ids = try {
-            genre_ids?.joinToString(",") ?: "-1,-2"
+            genre_ids.joinToString(",") ?: "-1,-2"
         } catch (e: Exception) {
             "-1,-2"
         }
