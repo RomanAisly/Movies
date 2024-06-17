@@ -1,6 +1,7 @@
 package com.example.movies.data.remote
 
 import com.example.movies.data.local.FilmsDB
+import com.example.movies.data.local.FilmsEntity
 import com.example.movies.data.local.toFilmsEntity
 import com.example.movies.data.local.toLocalFilms
 import com.example.movies.domain.FilmItem
@@ -46,11 +47,17 @@ class FilmsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getOneFilmLocal(id: Int): Flow<FilmItem> {
+    override suspend fun getFilmsLocal(films: List<FilmsEntity>): Flow<CheckConnection<List<FilmItem>>> {
         return flow {
-            val filmsLocal = filmsDB.filmsDAO.getFilmsById(id)
-            filmsLocal.toLocalFilms()
+            val cachedFilms = films.let {
+                it.map { filmItem ->
+                    filmItem.toLocalFilms()
+                }
+            }
+            filmsDB.filmsDAO.getCachedFilms()
+            emit(CheckConnection.Error(cachedFilms, "no films"))
         }
     }
+
 
 }
