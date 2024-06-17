@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface FilmsRepository {
     suspend fun getFilmsRemote(): Flow<CheckConnection<List<ResultDTO>>>
-
 }

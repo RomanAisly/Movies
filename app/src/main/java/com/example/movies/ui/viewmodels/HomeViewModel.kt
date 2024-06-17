@@ -6,6 +6,7 @@ import com.example.movies.data.remote.CheckConnection
 import com.example.movies.data.remote.FilmsRepositoryImpl
 import com.example.movies.data.remote.ResultDTO
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,7 +27,7 @@ class HomeViewModel @Inject constructor(private val filmsRepositoryImpl: FilmsRe
     val showErrorToast = _showErrorToast.receiveAsFlow()
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             filmsRepositoryImpl.getFilmsRemote().collectLatest { result ->
                 when (result) {
                     is CheckConnection.Error -> {

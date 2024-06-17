@@ -17,6 +17,7 @@ class FilmsRepositoryImpl @Inject constructor(
 
     override suspend fun getFilmsRemote(): Flow<CheckConnection<List<ResultDTO>>> {
         return flow {
+
             val filmsFromApi = try {
                 filmsApi.getFilmsByApi(AppModule.API_KEY, 1)
             } catch (e: IOException) {
@@ -32,14 +33,14 @@ class FilmsRepositoryImpl @Inject constructor(
                 emit(CheckConnection.Error(message = "Fatal error"))
                 return@flow
             }
-            val filmsEntities = filmsFromApi.results.let {
-                it.map { filmDTO ->
-                    filmDTO.toFilmsEntity()
+            emit(CheckConnection.Success(filmsFromApi.results))
+
+            val localFilms = filmsFromApi.results.let {
+                it.map { filmItem ->
+                    filmItem.toFilmsEntity()
                 }
             }
-
-            emit(CheckConnection.Success(filmsFromApi.results))
-            filmsDB.filmsDAO.insertFilms(filmsEntities)
+            filmsDB.filmsDAO.insertFilms(localFilms)
         }
     }
 

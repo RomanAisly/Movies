@@ -3,8 +3,11 @@ package com.example.movies.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "films_entity")
 data class FilmsEntity(
+
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: String,
@@ -18,7 +21,4 @@ data class FilmsEntity(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int,
-
-    @PrimaryKey(autoGenerate = true)
-    val id: Int
 )
