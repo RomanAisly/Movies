@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface FilmsRepository {
     suspend fun getFilmsRemote(): Flow<CheckConnection<List<ResultDTO>>>
+
+    suspend fun getOneFilmLocal(id: Int): Flow<FilmItem>
 }

@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -45,6 +46,7 @@ import com.example.movies.ui.viewmodels.DetailsViewModel
 
 @Composable
 fun DetailsScreen(viewModel: DetailsViewModel) {
+
     var isInFavorite by rememberSaveable {
         mutableStateOf(false)
     }
@@ -68,6 +70,7 @@ fun DetailsScreen(viewModel: DetailsViewModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 4.dp, bottom = 4.dp),
+            textAlign = TextAlign.Center,
             fontSize = 18.sp,
             maxLines = 1,
             fontFamily = FontFamily.SansSerif,

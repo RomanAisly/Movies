@@ -80,7 +80,6 @@ fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
                     5000
                 ).show()
             }
-
         }
     }
 
@@ -117,7 +116,6 @@ fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
             }
         }
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -176,7 +174,6 @@ fun FilmItem(films: ResultDTO, navHostController: NavHostController) {
         mutableStateOf(false)
     }
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -211,7 +208,7 @@ fun FilmItem(films: ResultDTO, navHostController: NavHostController) {
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp, start = 8.dp, end = 8.dp),
+                .padding(bottom = 8.dp, start = 2.dp, end = 2.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

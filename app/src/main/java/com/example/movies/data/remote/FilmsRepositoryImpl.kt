@@ -2,6 +2,8 @@ package com.example.movies.data.remote
 
 import com.example.movies.data.local.FilmsDB
 import com.example.movies.data.local.toFilmsEntity
+import com.example.movies.data.local.toLocalFilms
+import com.example.movies.domain.FilmItem
 import com.example.movies.domain.FilmsRepository
 import com.example.movies.domain.di.AppModule
 import kotlinx.coroutines.flow.Flow
@@ -41,6 +43,13 @@ class FilmsRepositoryImpl @Inject constructor(
                 }
             }
             filmsDB.filmsDAO.insertFilms(localFilms)
+        }
+    }
+
+    override suspend fun getOneFilmLocal(id: Int): Flow<FilmItem> {
+        return flow {
+            val filmsLocal = filmsDB.filmsDAO.getFilmsById(id)
+            filmsLocal.toLocalFilms()
         }
     }
 

@@ -14,7 +14,7 @@ interface FilmsDAO {
     suspend fun insertFilms(filmItems: List<FilmsEntity>)
 
     @Upsert
-    suspend fun upsertFilms(filmItems: List<FilmsEntity>)
+    suspend fun upsertFilms(item: List<FilmsEntity>)
 
     @Delete
     suspend fun deleteFilms(item: FilmsEntity)
