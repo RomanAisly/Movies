@@ -1,7 +1,6 @@
 package com.example.movies.data.local
 
 import com.example.movies.data.remote.ResultDTO
-import com.example.movies.domain.FilmItem
 
 fun ResultDTO.toFilmsEntity(): FilmsEntity {
     return FilmsEntity(
@@ -18,16 +17,16 @@ fun ResultDTO.toFilmsEntity(): FilmsEntity {
         id = id ?: -1,
         original_title = original_title ?: "",
         video = video ?: false,
-        genre_ids = try {
-            genre_ids.joinToString(",") ?: "-1,-2"
-        } catch (e: Exception) {
-            "-1,-2"
-        }
+//        genre_ids = try {
+//            genre_ids.joinToString(",") ?: "-1,-2"
+//        } catch (e: Exception) {
+//            "-1,-2"
+//        }
     )
 }
 
-fun FilmsEntity.toLocalFilms(): FilmItem {
-    return FilmItem(
+fun FilmsEntity.toLocalFilms(): FilmsEntity {
+    return FilmsEntity(
         backdrop_path = backdrop_path,
         original_language = original_language,
         overview = overview,
@@ -41,12 +40,12 @@ fun FilmsEntity.toLocalFilms(): FilmItem {
         id = id,
         adult = adult,
         original_title = original_title,
-        genre_ids = try {
-            genre_ids.split(",").map {
-                it.toInt()
-            }
-        } catch (e: Exception) {
-            listOf(-1, -2)
-        }
+//        genre_ids = try {
+//            genre_ids.split(",").map {
+//                it.toInt()
+//            }
+//        } catch (e: Exception) {
+//            listOf(-1, -2)
+//        }
     )
 }

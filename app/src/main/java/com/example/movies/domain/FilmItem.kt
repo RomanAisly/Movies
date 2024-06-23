@@ -1,13 +1,10 @@
 package com.example.movies.domain
 
-import androidx.room.PrimaryKey
-
 data class FilmItem(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
     val adult: Boolean,
     val backdrop_path: String,
-    val genre_ids: List<Int>,
+//    val genre_ids: List<Int>,
+    val id: Int,
     val original_language: String,
     val original_title: String,
     val overview: String,

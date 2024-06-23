@@ -69,6 +69,7 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
     val allFilms = viewModel.allFilms.collectAsState().value
+    val allLocalFilms = viewModel.allLocalFilms.collectAsState().value
     val context = LocalContext.current
 
     LaunchedEffect(viewModel.showErrorToast) {
@@ -81,6 +82,7 @@ fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
                 ).show()
             }
         }
+
     }
 
     if (allFilms.isEmpty()) {
@@ -91,6 +93,28 @@ fun HomeScreen(viewModel: HomeViewModel, navHostController: NavHostController) {
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 75.dp)
+            ) {
+                Search()
+                LazyVerticalGrid(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(backForHomeScreen),
+                    columns = GridCells.Fixed(2),
+                    contentPadding = PaddingValues(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    userScrollEnabled = true,
+                    flingBehavior = ScrollableDefaults.flingBehavior(),
+                ) {
+                    items(allLocalFilms.size) {
+
+                    }
+                }
+            }
         }
     } else {
         Column(
@@ -189,20 +213,20 @@ fun FilmItem(films: ResultDTO, navHostController: NavHostController) {
             modifier = Modifier.clip(RoundedCornerShape(20.dp))
         )
 
-            Text(
-                text = films.title,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        top = 4.dp,
-                        bottom = 3.dp
-                    ),
-                textAlign = TextAlign.Center,
-                fontSize = 18.sp,
-                maxLines = 1,
-                fontFamily = FontFamily.SansSerif,
-                color = MaterialTheme.colorScheme.onSurface
-            )
+        Text(
+            text = films.title,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 4.dp,
+                    bottom = 3.dp
+                ),
+            textAlign = TextAlign.Center,
+            fontSize = 18.sp,
+            maxLines = 1,
+            fontFamily = FontFamily.SansSerif,
+            color = MaterialTheme.colorScheme.onSurface
+        )
 
 
         Row(

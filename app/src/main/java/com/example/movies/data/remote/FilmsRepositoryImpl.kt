@@ -4,7 +4,6 @@ import com.example.movies.data.local.FilmsDB
 import com.example.movies.data.local.FilmsEntity
 import com.example.movies.data.local.toFilmsEntity
 import com.example.movies.data.local.toLocalFilms
-import com.example.movies.domain.FilmItem
 import com.example.movies.domain.FilmsRepository
 import com.example.movies.domain.di.AppModule
 import kotlinx.coroutines.flow.Flow
@@ -20,6 +19,7 @@ class FilmsRepositoryImpl @Inject constructor(
 
     override suspend fun getFilmsRemote(): Flow<CheckConnection<List<ResultDTO>>> {
         return flow {
+
 
             val filmsFromApi = try {
                 filmsApi.getFilmsByApi(AppModule.API_KEY, 1)
@@ -43,21 +43,20 @@ class FilmsRepositoryImpl @Inject constructor(
                     filmItem.toFilmsEntity()
                 }
             }
-            filmsDB.filmsDAO.insertFilms(localFilms)
+            filmsDB.filmsDAO.upsertFilms(localFilms)
         }
     }
 
-    override suspend fun getFilmsLocal(films: List<FilmsEntity>): Flow<CheckConnection<List<FilmItem>>> {
+    override suspend fun getFilmsLocal(films: List<FilmsEntity>?): Flow<CheckConnection<List<FilmsEntity>>> {
         return flow {
-            val cachedFilms = films.let {
-                it.map { filmItem ->
-                    filmItem.toLocalFilms()
+            val localFilms = films?.let {
+                it.map { films ->
+                    films.toLocalFilms()
                 }
             }
+            emit(CheckConnection.Error(localFilms, "error"))
             filmsDB.filmsDAO.getCachedFilms()
-            emit(CheckConnection.Error(cachedFilms, "no films"))
         }
     }
-
 
 }
